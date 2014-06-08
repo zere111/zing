@@ -1,70 +1,23 @@
-function setSldHeight(){
+//set the slide height to the browser's height
+function setSldHeight(){                            
 	$('.carousel').height(window.innerHeight);
 	$('.item').height(window.innerHeight);
 	$('.sl-img').height(window.innerHeight);
 };
-/*
-function choosePortfolio(){
-	$('#p-all').click(function(){
-		if($('.p-web').css("left")!='auto'){
-			$('.p-web').animate({left:'0%'});
-		};
-		if($('.p-photo').css("right")!='auto'){
-			$('.p-photo').animate({right:'0%'});
-		};
-		if($('.p-product').css("left")!='auto'){
-			$('.p-product').animate({left:'0%',bottom:'0px'});
-		};
-		$('#por-ga').children().animate({opacity:'1'},'slow');
-	});
-	$('#p-web').click(function(){
-		x=$('#web1').position();
-		alert(x.left);
-		alert(x.top);
-		$('.p-web').animate({opacity:'1',left:'25%'},'slow');
-		if($('.p-photo').css("right")!='auto'){
-			$('.p-photo').animate({right:'0%'});
-		};
-		if($('.p-product').css("left")!='auto'){
-			$('.p-product').animate({left:'0%',bottom:'0px'});
-		};
-		$('#por-ga').children().not('.p-web').animate({opacity:'0'},'slow');
-	});
-	$('#p-photo').click(function(){		
-		$('.p-photo').animate({opacity:'1',right:'25%'},'slow');
-		if($('.p-web').css("left")!='auto'){
-			$('.p-web').animate({left:'0%'});
-		};
-		if($('.p-product').css("left")!='auto'){
-			$('.p-product').animate({left:'0%',bottom:'0px'});
-		};
-		$('#por-ga').children().not('.p-photo').animate({opacity:'0'},'slow');	
-	});
-	$('#p-product').click(function(){		
-		$('.p-product').animate({opacity:'1',left:'25%',bottom:'220px'},'slow');
-		if($('.p-photo').css("right")!='auto'){
-			$('.p-photo').animate({right:'0%'});
-		};
-		if($('.p-web').css("left")!='auto'){
-			$('.p-web').animate({left:'0%'});
-		};
-		$('#por-ga').children().not('.p-product').animate({opacity:'0'},'slow');	
-	});
-};
-*/
+
 $(document).ready(function(){
 	setSldHeight();
-	$('body').scrollspy({ target: '.navbar-collapse'});
-	$(window).resize(function() {
+	$('body').scrollspy({ target: '.navbar-collapse'}); // scrospy the navbar
+	$(window).resize(function() {                       //when the window resize, reset the slide height
 		setSldHeight();
 		});
-	$('#nav').affix({
+	$('#nav').affix({                                   //set the affix of navbar
 	    offset: {
 	      top: window.innerHeight,
 	      bottom: function(){return (this.bottom = $('footer').outerHeight(true))}
 	    }
 	  });
-	$('#por-ga').isotope({
+	$('#por-ga').isotope({                              //the function of Portfolio by isotope
 		  // options
 		  animationEngine:'best-available',
 		  resizable:'ture',
@@ -76,12 +29,31 @@ $(document).ready(function(){
 		  $('#por-ga').isotope({ filter: selector });
 		  return false;
 		});
-	$(function(){
+	$(function(){                                       //scrolling the background of div by stellar
 		$.stellar({
 			horizontalScrolling: false,
 			verticalOffset: 40
 		});
 	});
+        //bootstrap3's showing message function 
 	$('#ab-gina').popover({trigger:'hover',placement:'right',container: 'body',title:'Gina Gao',content:'Gina is a this is a test'});
 	$('#ab-zere').popover({trigger:'hover',placement:'left',container: 'body',title:'Lee Huang',content:'Lee is a this is a test'});
+        $("#submit").click(function(){             //send email function
+		//alert("this is  a test");
+		$.ajax({
+			type:"post",
+			data:{"name":$("#name").val(),"phone":$("#phone").val(),"email":$("#email").val(),"message":$("#message").val()},
+			url:"http://localhost/zing/index.php/contact/mail",
+			success:function(result){
+				if(result==1){
+				alert("Success. We will replay you ASAP. ");
+				}else{
+				alert("failed--0");
+				}
+			},
+			error:function(){
+				alert("ajax failed");
+			}
+			});
+		});
 });
