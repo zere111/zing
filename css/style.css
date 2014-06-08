@@ -1,0 +1,45 @@
+/*parallax*/
+.photo {
+			background-attachment: fixed;
+			background-position: 50% 0;
+			background-repeat: no-repeat;
+			height: 450px;
+			position: relative;
+		}
+.photo span {
+			bottom: 0;
+			color: white;
+			display: block;
+			left: 50%;
+			margin-left: -640px;
+			font-size: 38px;
+			padding: 10px;
+			position: absolute;
+			text-shadow: 0 2px 0 black, 0 0 10px black;
+			width: 1280px;
+		}
+.summer {
+			background-image: url(../imgs/bg1.jpg);
+		}
+.spring {
+			background-image: url(../imgs/bg2.jpg);
+		}
+#img-bar{
+
+}
+/*about us images*/
+.face{
+	width:300px;
+	height:300px;
+}
+.fa-5{
+	font-size:16em;
+}
+/*portfoilo*/
+.isotope-item {
+  z-index: 2;
+}
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
